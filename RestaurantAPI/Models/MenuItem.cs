@@ -7,10 +7,10 @@ namespace RestaurantAPI.Models
         [Key]
         public int MenuItemId { get; set; }
         [DataType(DataType.ImageUrl)]
-        public string MenuItemImageURL { get; set; }
+        public string MenuItemImageURL { get; set; } = string.Empty;
         [Required]
         [StringLength(100, ErrorMessage = "Name cannot be more than 100 characters.")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
