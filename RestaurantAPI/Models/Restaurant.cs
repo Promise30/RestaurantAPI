@@ -7,7 +7,7 @@ namespace RestaurantAPI.Models
         [Key]
         public int RestaurantId { get; set; }
         [Required]
-        public string RestaurantName { get; set; }
+        public string RestaurantName { get; set; } = string.Empty;
         [DataType(DataType.ImageUrl)]
         public string? RestaurantImageUrl { get; set; }
         [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid phone number")]
@@ -25,9 +25,9 @@ namespace RestaurantAPI.Models
         public double OverallRating { get; set; }
         public int TotalReviews { get; set; }
         public Delivery? Delivery { get; set; }
-        public ICollection<Review>? Reviews { get; set; }
-        public ICollection<MenuType>? MenuTypes { get; set; } = new List<MenuType>();
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public ICollection<MenuType> MenuTypes { get; set; } = new List<MenuType>();
         public int LocalGovernmentId { get; set; }
-        public virtual LocalGovernment LocalGovernment { get; set; }
+        public virtual LocalGovernment? LocalGovernment { get; set; }
     }
 }
