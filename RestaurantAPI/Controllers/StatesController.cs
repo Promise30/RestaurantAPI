@@ -35,30 +35,17 @@ namespace RestaurantAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetStatesWithLocalGovts()
         {
-            //var states = await _dbContext.States.Select(state => new
-            //{
-            //    state.StateId,
-            //    state.Name,
-            //    LocalGovernments = state.LocalGovernments.Select(lg => new
-            //    {
-
-            //        lg.Name
-            //    }).ToList()
-
-            //}).ToListAsync();
-            var statesWithLocalGovernments = await _dbContext.States
-                    .Select(state => new
-                    {
-                        state.StateId,
-                        state.Name,
-                        LocalGovernments = state.LocalGovernments.Select(localGov => localGov.Name).ToList()
-                    })
-                    .ToListAsync();
-            if (statesWithLocalGovernments == null || statesWithLocalGovernments.Count == 0)
+            var statesWithLocalGovernments = await _dbContext.States.Select(state => new
             {
-                return NotFound();
-            }
+                state.StateId,
+                state.Name,
+                LocalGovernments = state.LocalGovernments.Select(lg => new
+                {
+                    lg.LocalGovernmentId,
+                    lg.Name
+                }).ToList()
 
+            }).ToListAsync();
             return Ok(statesWithLocalGovernments);
         }
 
