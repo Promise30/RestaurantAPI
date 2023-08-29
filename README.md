@@ -4,7 +4,7 @@ This API can be accessible at: <a>https://restaurants.bsite.net</a>
 
 ## Features
 
-- Manage restaurants, menus, orders, and reservations.
+- Manage restaurants, menus, menuitems, and reviews.
 - Retrieve detailed information about restaurants.
 - Add and update menus and menu items.
 - Post and vote on restaurant reviews.
