@@ -143,7 +143,7 @@ namespace RestaurantAPI.Controllers
 
 
         [HttpGet("SearchRestaurants")]
-        public async Task<IActionResult> SearchForRestaurants([FromQuery(Name = "restaurantName")] string restaurantName,
+        public async Task<IActionResult> SearchForRestaurants([FromQuery(Name = "restaurantName")] string restaurantName = "",
                                                               [FromQuery(Name = "stateId")] int stateId = 0,
                                                               [FromQuery(Name = "localGovernmentId")] int localGovernmentId = 0)
         {
@@ -158,12 +158,12 @@ namespace RestaurantAPI.Controllers
             }
             if (stateId != 0)
             {
-                query = query.Where(r => r.LocalGovernment.StateId == stateId);
+                query = query.Where(r => r.LocalGovernment.State.StateId == stateId);
             }
 
             if (localGovernmentId != 0)
             {
-                query = query.Where(r => r.LocalGovernmentId == localGovernmentId);
+                query = query.Where(r => r.LocalGovernment.LocalGovernmentId == localGovernmentId);
             }
             var restaurants = await query.ToListAsync();
 
